@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.learningsteamvr.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\al286752\\Documents\\GitHub\\LearningSteamVR\\LearningSteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "LearningSteamVR [Testing]"
+        }
+      }
+    }
+  ]
+}
