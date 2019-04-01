@@ -5,7 +5,10 @@ using Valve.VR;
 
 public class Hand : MonoBehaviour {
 
-    public SteamVR_Action_Boolean m_GrabAction = null;
+    public SteamVR_Action_Boolean m_Trigger_Action = null; //Grabpinch (en el inspector)
+    public SteamVR_Action_Boolean m_TouchpadAction = null; //Teleport (en el inspector)
+
+    //public SteamVR_Action_Boolean m_GrabAction = null; //es per a lo comentat (es un poc mes complexe?)
 
     private SteamVR_Behaviour_Pose m_Pose= null;
     private FixedJoint m_Joint = null;
@@ -23,21 +26,49 @@ public class Hand : MonoBehaviour {
 
 	void Update () {
 
-        //Down
-        if (m_GrabAction.GetStateDown(m_Pose.inputSource))
+        //Trigger
+        if (m_Trigger_Action.GetStateDown(m_Pose.inputSource))
         {
             print(m_Pose.inputSource + "Trigger Down");
+
+            if (m_CurrentInteractable !=null) //Si ya tenemos un interactuable cogido, hacemos su accion(y no lo volvemos a recoger)
+            {
+                m_CurrentInteractable.Action();
+                return;
+            }
+
             PickUp();
         }
 
-        //Up
+        //Touchpad
 
-        if (m_GrabAction.GetStateUp(m_Pose.inputSource))
+        if (m_TouchpadAction.GetStateDown(m_Pose.inputSource))
         {
-            print(m_Pose.inputSource + "Trigger UP");
+            print(m_Pose.inputSource + "Touchpad Down");
+
             Drop();
         }
 
+
+
+
+        //Per agafar objectes de la forma basica
+        /*
+         //Down
+         if (m_GrabAction.GetStateDown(m_Pose.inputSource))
+         {
+             print(m_Pose.inputSource + "Trigger Down");
+             PickUp();
+         }
+
+         //Up
+
+         if (m_GrabAction.GetStateUp(m_Pose.inputSource))
+         {
+             print(m_Pose.inputSource + "Trigger UP");
+             Drop();
+         }
+         */
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,7 +109,10 @@ public class Hand : MonoBehaviour {
         }
 
         //Position
-        m_CurrentInteractable.transform.position = transform.position;
+
+        //m_CurrentInteractable.transform.position = transform.position; //si lo hacemos de la forma basica (la version que no hacemos acciones)
+
+        m_CurrentInteractable.ApplyOffset(transform);
 
         //attach
 

@@ -113,40 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &610147938
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!43 &780343917
+--- !u!43 &243298303
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -343,11 +310,11 @@ Prefab:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 780343917}
+      objectReference: {fileID: 243298303}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 610147938}
+      objectReference: {fileID: 1975845800}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
   m_IsPrefabAsset: 0
@@ -412,8 +379,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e12c501ad22a44fac0e2e8a17830aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GrabAction:
+  m_Trigger_Action:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  m_TouchpadAction:
+    actionPath: /actions/default/in/Teleport
     needsReinit: 0
   m_ContactInteractables: []
 --- !u!138 &799866657
@@ -467,8 +437,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e12c501ad22a44fac0e2e8a17830aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GrabAction:
+  m_Trigger_Action:
     actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  m_TouchpadAction:
+    actionPath: /actions/default/in/Teleport
     needsReinit: 0
   m_ContactInteractables: []
 --- !u!1 &1256370581
@@ -572,7 +545,7 @@ GameObject:
   - component: {fileID: 1741156871}
   - component: {fileID: 1741156876}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CubeInteractuable
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -589,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cd8ab432daa194983bf4bca2802af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Offset: {x: 0, y: 0.1, z: 0}
   m_ActiveHand: {fileID: 0}
 --- !u!65 &1741156872
 BoxCollider:
@@ -738,3 +712,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!21 &1975845800
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
